@@ -1,15 +1,18 @@
-/* A quick tour of the stack data structure in the C++ STL */
-
-/* Containers are data types from STL that contain data. An adapter takes an existing container type and makes it act like a different abstract type (most likely by providing an interface). Stack is a container adapter and by default uses deque as base container. Stack does not support iterators.
-
-Operations -
-1. empty
-2. size
-3. back
-4. push_back
-5. pop_back
-
-*/
+/* A quick tour of the stack data structure in the C++ STL
+ *
+ * Containers are data types from STL that contain data. An adapter takes an
+ * existing container type and makes it act like a different abstract type
+ * (most likely by providing an interface). Stack is a container adapter and by
+ * default uses deque as base container. Stack does not support iterators.
+ *
+ * Operations -
+ * 1. empty
+ * 2. size
+ * 3. back
+ * 4. push_back
+ * 5. pop_back
+ *
+ */
 
 #include <iostream>
 #include <stack>
