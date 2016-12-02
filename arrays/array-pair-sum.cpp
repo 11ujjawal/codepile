@@ -18,9 +18,8 @@ using namespace std;
 bool hasPair(vector<int> ivec, int key);
 
 int main(void) {
-    int key = 16;
-    int nums[] = {1, 4, 45, 6, 10, -8};
-    vector<int> ivec(nums, nums + 6);
+    int key = 0;
+    vector<int> ivec{1, 4, 5, 6, 5, -8, 9, -2, -6, 3};
 
     cout << "Does a pair exists? " << hasPair(ivec, key) << endl;
 
