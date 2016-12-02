@@ -5,10 +5,8 @@
 
 using namespace std;
 
-/* Maximum sum through brute-force method */
 int maxSumBruteForce(vector<int> ivec);
 int maxSumKadens(vector<int> ivec);
-// int maxSumDivAndConq(vector<int> ivec);
 
 int main(void) {
     vector<int> ivec{-2, -3, 4, -1, -2, 1, 5, -3};
