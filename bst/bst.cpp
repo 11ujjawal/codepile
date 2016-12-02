@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-#include "tree.hpp"
+#include "bst.hpp"
 
 int main(void) {
     /* BST for integers as data */

@@ -1,16 +1,34 @@
-/* Class definition for Binary Search Tree */
+/*
+ * The below template for tree has been written by TemplateRex in stackoverflow
+ * http://stackoverflow.com/a/32602486/3724822
+ */
 
-#include "tree-template.hpp"
+#ifndef _TREE_HPP
+#define _TREE_HPP
 
-template <class T>
-class bst {
-    node_ptr<T> root;
-    node_ptr<T> addNode(node_ptr<T> node, T const& value);
-    bool findNode(btNode<T> const& node, T const& value);
-public:
-    bst() {
-        root = nullptr;
-    }
-    void insert(T const& value);
-    bool find(T const& value);
+#include <memory>
+#include <utility>
+
+template <typename T>
+struct btNode;
+
+template <typename T>
+using node_ptr = std::unique_ptr<btNode<T>>;
+
+template <typename T>
+struct btNode {
+    T data;
+    node_ptr<T> left, right;
+
+    btNode(T const &key, node_ptr<T> lhs, node_ptr<T> rhs)
+     :
+        data(key), left(std::move(lhs)), right(std::move(rhs))
+    {}
 };
+
+template <typename T>
+auto make_node(T const &value, node_ptr<T> lhs = nullptr, node_ptr<T> rhs = nullptr) {
+    return std::make_unique<btNode<T>>(value, std::move(lhs), std::move(rhs));
+}
+
+#endif
