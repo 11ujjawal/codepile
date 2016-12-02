@@ -1,3 +1,5 @@
+/* Find element in a sorted and rotated array */
+
 #include <iostream>
 #include <vector>
 

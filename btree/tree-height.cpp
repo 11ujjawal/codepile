@@ -1,7 +1,7 @@
 /* Find the height of a tree assuming root node to be at height 1 */
 
 #include <iostream>
-#include "tree.h"
+#include "tree.hpp"
 
 using namespace std;
 

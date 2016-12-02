@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <limits>
-#include "tree.h"
+#include "tree.hpp"
 
 using namespace std;
 

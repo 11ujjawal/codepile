@@ -1,7 +1,7 @@
 /* Find the size of a binary tree */
 
 #include <iostream>
-#include "tree.h"
+#include "tree.hpp"
 
 using namespace std;
 
