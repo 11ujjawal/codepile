@@ -1,6 +1,7 @@
 /* Tree traversal in binary tree */
 
 #include <iostream>
+#include <queue>
 #include <string>
 #include "tree.hpp"
 
@@ -18,6 +19,10 @@ void printPreOrder(const node_ptr<T>& node);
 template <typename T>
 void printPostOrder(const node_ptr<T>& node);
 
+/* Tempplate declaration for levelOrder traversal */
+template <typename T>
+void printLevelOrder(const node_ptr<T>& node);
+
 
 int main(void) {
     auto const root = make_node<int>(1);
@@ -34,7 +39,8 @@ int main(void) {
     printInOrder(root);
     cout << "\nPostOrder Traversal: ";
     printPostOrder(root);
-    cout << endl;
+    cout << "\nLevelOrder Traversal: ";
+    printLevelOrder(root);
 
     return 0;
 }
@@ -57,8 +63,8 @@ void printPreOrder(const node_ptr<T>& node) {
         return;
 
     cout << node->data << ' ';
-    printInOrder(node->left);
-    printInOrder(node->right);
+    printPreOrder(node->left);
+    printPreOrder(node->right);
 }
 
 /* Template definition for postOrder tree traversal */
@@ -67,7 +73,32 @@ void printPostOrder(const node_ptr<T>& node) {
     if(!node)
         return;
 
-    printInOrder(node->left);
-    printInOrder(node->right);
+    printPostOrder(node->left);
+    printPostOrder(node->right);
     cout << node->data << ' ';
+}
+
+/* Tempplate definition for levelOrder traversal */
+template <typename T>
+void printLevelOrder(const node_ptr<T>& node) {
+    if(!node)
+        return;
+
+    queue<btNode<T>* > Q;
+    Q.push(node.get());
+
+    while(!Q.empty()) {
+        btNode<T> *temp = Q.front();
+        Q.pop();
+
+        cout << temp->data << ' ';
+
+        if(temp->left != nullptr)
+            Q.push((temp->left).get());
+
+        if(temp->right != nullptr)
+            Q.push((temp->right).get());
+    }
+
+    cout << endl;
 }
