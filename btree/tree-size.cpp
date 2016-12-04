@@ -6,7 +6,7 @@
 using namespace std;
 
 template <typename T>
-int getSize(btNode<T> const& node);
+size_t getSize(const node_ptr<T>& node);
 
 int main(void) {
     auto const root = make_node<int>(1);
@@ -17,21 +17,15 @@ int main(void) {
     root->right->left = make_node<int>(6);
     root->right->right = make_node<int>(7);
 
-    cout << "Size of tree: " << getSize(*root) << endl;
+    cout << "Size of tree: " << getSize(root) << endl;
 
     return 0;
 }
 
 template <typename T>
-int getSize(btNode<T> const& node) {
-    int leftSize = 0,
-        rightSize = 0;
+size_t getSize(const node_ptr<T>& node) {
+    if(!node)
+        return 0;
 
-    if(node.left)
-        leftSize = getSize(*node.left);
-
-    if(node.right)
-        rightSize = getSize(*node.right);
-
-    return leftSize + rightSize + 1;
+    return 1 + getSize(node->left) + getSize(node->right);
 }

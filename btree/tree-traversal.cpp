@@ -8,15 +8,15 @@ using namespace std;
 
 /* Template declaration for inOrder tree traversal */
 template <typename T>
-void printInOrder(btNode<T> const& node);
+void printInOrder(const node_ptr<T>& node);
 
 /* Template declaration for preOrder tree traversal */
 template <typename T>
-void printPreOrder(btNode<T> const& node);
+void printPreOrder(const node_ptr<T>& node);
 
 /* Template declaration for postOrder tree traversal */
 template <typename T>
-void printPostOrder(btNode<T> const& node);
+void printPostOrder(const node_ptr<T>& node);
 
 
 int main(void) {
@@ -29,11 +29,11 @@ int main(void) {
     root->right->right = make_node<int>(7);
 
     cout << "PreOrder Traversal: ";
-    printPreOrder(*root);
+    printPreOrder(root);
     cout << "\nInOrder Traversal: ";
-    printInOrder(*root);
+    printInOrder(root);
     cout << "\nPostOrder Traversal: ";
-    printPostOrder(*root);
+    printPostOrder(root);
     cout << endl;
 
     return 0;
@@ -41,36 +41,33 @@ int main(void) {
 
 /* Template definition for inOrder tree traversal */
 template <typename T>
-void printInOrder(btNode<T> const& node) {
-    if(node.left)
-        printInOrder(*node.left);
+void printInOrder(const node_ptr<T>& node) {
+    if(!node)
+        return;
 
-    cout << node.data << ' ';
-
-    if(node.right)
-        printInOrder(*node.right);
+    printInOrder(node->left);
+    cout << node->data << ' ';
+    printInOrder(node->right);
 }
 
 /* Template definition for preOrder tree traversal */
 template <typename T>
-void printPreOrder(btNode<T> const& node) {
-    cout << node.data << ' ';
+void printPreOrder(const node_ptr<T>& node) {
+    if(!node)
+        return;
 
-    if(node.left)
-        printInOrder(*node.left);
-
-    if(node.right)
-        printInOrder(*node.right);
+    cout << node->data << ' ';
+    printInOrder(node->left);
+    printInOrder(node->right);
 }
 
 /* Template definition for postOrder tree traversal */
 template <typename T>
-void printPostOrder(btNode<T> const& node) {
-    if(node.left)
-        printInOrder(*node.left);
+void printPostOrder(const node_ptr<T>& node) {
+    if(!node)
+        return;
 
-    if(node.right)
-        printInOrder(*node.right);
-
-    cout << node.data << ' ';
+    printInOrder(node->left);
+    printInOrder(node->right);
+    cout << node->data << ' ';
 }

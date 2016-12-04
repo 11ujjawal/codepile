@@ -8,7 +8,7 @@ using namespace std;
 
 /* Template declaration for finding the maximum value of an element of the given type */
 template <typename T>
-T getMax(btNode<T> const& node);
+T getMax(const node_ptr<T>& node);
 
 int main(void) {
     auto const root = make_node<double>(-5.00001);
@@ -19,24 +19,21 @@ int main(void) {
     root->right->left = make_node<double>(-2.43);
     root->right->right = make_node<double>(-7.34);
 
-    cout << getMax(*root) << endl;
+    cout << getMax(root) << endl;
 
     return 0;
 }
 
 /* Template definition for finding the maximum value of an element of the given type */
 template <typename T>
-T getMax(btNode<T> const& node) {
-    T leftMax, rightMax, max = node.data;
+T getMax(const node_ptr<T>& node) {
+    if(!node)
+        return numeric_limits<T>::lowest();
 
-    /* leftMax and rightMax are initialized to the lowest possible values */
-    leftMax = rightMax = numeric_limits<T>::lowest();
+    T leftMax, rightMax, max = node->data;
 
-    if(node.left)
-        leftMax = getMax(*node.left);
-
-    if(node.right)
-        rightMax = getMax(*node.right);
+    leftMax = getMax(node->left);
+    rightMax = getMax(node->right);
 
     if(leftMax > max)
         max = leftMax;
