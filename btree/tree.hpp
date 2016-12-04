@@ -3,7 +3,11 @@
  * http://stackoverflow.com/a/32602486/3724822
  */
 
+#ifndef _TREE_HPP
+#define _TREE_HPP
+
 #include <memory>
+#include <utility>
 
 template <typename T>
 struct btNode;
@@ -26,3 +30,5 @@ template <typename T>
 auto make_node(T const &value, node_ptr<T> lhs = nullptr, node_ptr<T> rhs = nullptr) {
     return std::make_unique<btNode<T>>(value, std::move(lhs), std::move(rhs));
 }
+
+#endif
