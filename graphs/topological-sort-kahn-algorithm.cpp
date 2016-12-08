@@ -37,7 +37,7 @@ void Graph::sort() {
     vector<int> order, inDegree(edges.size(), 0);
 
     for(vector<list<int> >::iterator startVertex = edges.begin(); startVertex != edges.end(); ++startVertex)
-        for(list<int>::iterator endVertex = (*startVertex).begin(); endVertex != (*startVertex).end(); ++endVertex)
+        for(list<int>::iterator endVertex = startVertex->begin(); endVertex != startVertex->end(); ++endVertex)
             inDegree[*endVertex]++;
 
     queue<int> Q;
