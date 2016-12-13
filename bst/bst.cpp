@@ -14,6 +14,9 @@ int main(void) {
 
     std::cout << "Searching in BST ---> \n";
     std::cout << "Find 20: " << btree.find(20) << "\nFind 25: " << btree.find(25) << std::endl;
+    auto min = btree.min();
+    if(min)
+        std::cout << min << std::endl;
 
     /* BST for strings as data */
     bst<std::string> strBt;
@@ -33,7 +36,7 @@ void bst<T>::insert(T const& value) {
 }
 
 template <class T>
-node_ptr<T> bst<T>::addNode(node_ptr<T> node, T const& value) {
+node_ptr<T> bst<T>::addNode(node_ptr<T> node, const T& value) {
     if(!node)
         return make_node<T>(value);
 
@@ -48,22 +51,32 @@ node_ptr<T> bst<T>::addNode(node_ptr<T> node, T const& value) {
 /* Templetion definition to find a value in bst */
 template <class T>
 bool bst<T>::find(T const& value) {
-    return findNode(*root, value);
+    return findNode(root, value);
 }
 
 template <class T>
-bool bst<T>::findNode(btNode<T> const& node, T const& value) {
-    if(node.data == value)
+bool bst<T>::findNode(const node_ptr<T>& node, const T& key) {
+    if(!node)
+        return false;
+
+    if(node->data == key)
         return true;
 
-    if(node.data < value) {
-        if(node.right)
-            return findNode(*node.right, value);
-    }
-    else {
-        if(node.left)
-            return findNode(*node.left, value);
-    }
+    if(node->data < key)
+        return findNode(node->right, key);
+    else
+        return findNode(node->left, key);
+}
 
-    return false;
+template <class T>
+T bst<T>::min() {
+    // if(!root)
+        // return make_ptr<T>();
+
+    node_ptr<T>& node = root;
+
+    // while(!node->left)
+        // node = node->left;
+
+    return node->data;
 }

@@ -8,14 +8,15 @@
 template <class T>
 class bst {
     node_ptr<T> root;
-    node_ptr<T> addNode(node_ptr<T> node, T const& value);
-    bool findNode(btNode<T> const& node, T const& value);
+    node_ptr<T> addNode(node_ptr<T> node, const T& value);
+    bool findNode(const node_ptr<T>& node, const T& key);
 public:
     bst() {
         root = nullptr;
     }
     void insert(T const& value);
     bool find(T const& value);
+    T min();
 };
 
 #endif
