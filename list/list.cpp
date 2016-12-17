@@ -31,7 +31,11 @@ void checkPush() {
 void checkPop() {
     cout << "\nChecking Pop Operations" << endl;
 
-    auto head = make_list({2, 3, 9, 7, 0, 6, 8, 1});
+    auto head = make_list({2, 3, 3, 5, 6, 7, 7, 7, 8, 8, 9});
+    print(head);
+
+    /* Delete the duplicate elements */
+    pop_dups(head);
     print(head);
 
     /* Delete kth node from end */
@@ -91,6 +95,24 @@ void checkUtility() {
     cout << "Reversed list: " << endl;
     reverse(head);
     print(head);
+
+    /* check for a loop in the given list */
+    auto iHead = make_list({3, 2, 5, 4});
+    /* fetch the last node of the list above and make it's next pointer point to
+     * the second node.
+     */
+    auto lastNode = fetch(iHead, length(iHead));
+    lastNode->next = iHead->next;
+
+    cout << "Is loop present in the list after the modification? " << loop(iHead) << endl;
+
+    /* To check for intersection between two nodes, let the last node of iHead
+     * point to the eighth node of head
+     */
+    lastNode->next = fetch(head, 8);
+    auto iNode = intersection(iHead, head);
+    cout << "Data at the intersection node: " << iNode->data << endl;
+
 }
 
 

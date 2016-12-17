@@ -68,3 +68,30 @@ bool loop(const node_ptr<T>& head) {
 
     return false;
 }
+
+/* Given references to two lists, find their intersection point */
+template <typename T>
+node_ptr<T> intersection(const node_ptr<T>& headOne, const node_ptr<T>& headTwo) {
+    size_t diff, lenOne = length(headOne), lenTwo = length(headTwo);
+    node_ptr<T> primHead, secHead;
+
+    if(lenOne < lenTwo) {
+        primHead = headTwo;
+        secHead = headOne;
+        diff = lenTwo - lenOne;
+    } else {
+        primHead = headOne;
+        secHead = headTwo;
+        diff = lenOne - lenTwo;
+    }
+
+    for(size_t it = 0; it != diff; ++it)
+        primHead = primHead->next;
+
+    while(primHead) {
+        if(primHead == secHead)
+            return primHead;
+        primHead = primHead->next;
+        secHead = secHead->next;
+    }
+}

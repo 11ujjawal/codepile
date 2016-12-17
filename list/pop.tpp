@@ -69,3 +69,23 @@ void pop_k_back(node_ptr<T>& head, const size_t index) {
 
     iterSlow->next = iterSlow->next->next;
 }
+
+/* Remove duplicates from a sorted list */
+template <typename T>
+void pop_dups(node_ptr<T>& head) {
+    if(!head)
+        return;
+
+    node_ptr<T> currNode, prevNode;
+    prevNode = head;
+    currNode = head->next;
+
+    while(currNode) {
+        if(prevNode->data == currNode->data)
+            prevNode->next = currNode->next;
+        else
+            prevNode = prevNode->next;
+
+        currNode = currNode->next;
+    }
+}

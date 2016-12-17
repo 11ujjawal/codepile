@@ -102,6 +102,10 @@ void pop_all(node_ptr<T>& node);
 template <typename T>
 void pop_k_back(node_ptr<T>& head, const size_t index);
 
+/* Remove duplicates from a sorted list */
+template <typename T>
+void pop_dups(node_ptr<T>& head);
+
 /* Template implementation */
 #include "pop.tpp"
 
@@ -166,6 +170,10 @@ size_t length(const node_ptr<T>& head);
 template <typename T>
 void reverse(node_ptr<T>& head);
 
+/* Given references to two lists, find their intersection point */
+template <typename T>
+node_ptr<T> intersection(const node_ptr<T>& headOne, const node_ptr<T>& headTwo);
+
 /* Template implementation */
 #include "utility.tpp"
 
@@ -177,6 +185,10 @@ void reverse(node_ptr<T>& head);
 /* Given a reference to the list, print the values in the list */
 template <typename T>
 void print(const node_ptr<T>& head);
+
+/* Given a reference to a list, print it in reverse order */
+template <typename T>
+void printReverse(const node_ptr<T>& head);
 
 /* Template implementation */
 #include "io.tpp"
