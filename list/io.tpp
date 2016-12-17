@@ -1,3 +1,5 @@
+#include <iostream>
+
 /* Given a reference to the list, print the values in the list */
 template <typename T>
 void print(const node_ptr<T>& head) {

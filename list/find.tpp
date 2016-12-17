@@ -56,7 +56,7 @@ node_ptr<T> fetchMid(const node_ptr<T>& head) {
     node_ptr<T> fastIter, slowIter;
     fastIter = slowIter = head;
 
-    while(fastIter->next->next) {
+    while(fastIter->next && fastIter->next->next) {
         fastIter = fastIter->next->next;
         slowIter = slowIter->next;
     }
