@@ -79,6 +79,7 @@ void push_sorted(node_ptr<T>& head, const T& key);
  * pop_back()
  * pop_at()
  * pop_all()
+ * pop_k_back()
  */
 
 /* Given a reference to the list, delete the first node */
@@ -96,6 +97,10 @@ void pop_at(node_ptr<T>& node);
 /* Given a reference to a node, delete the list */
 template <typename T>
 void pop_all(node_ptr<T>& node);
+
+/* Given a reference to a node, delete the kth element from back */
+template <typename T>
+void pop_k_back(node_ptr<T>& head, const size_t index);
 
 /* Template implementation */
 #include "pop.tpp"

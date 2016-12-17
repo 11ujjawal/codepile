@@ -31,7 +31,12 @@ void checkPush() {
 void checkPop() {
     cout << "\nChecking Pop Operations" << endl;
 
-    auto head = make_list({2, 3, 6, 8, 1});
+    auto head = make_list({2, 3, 9, 7, 0, 6, 8, 1});
+    print(head);
+
+    /* Delete kth node from end */
+    pop_k_back(head, 2);
+    print(head);
 
     /* Delete the third node */
     pop_at(head->next);

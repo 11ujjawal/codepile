@@ -43,3 +43,29 @@ void pop_all(node_ptr<T>& head) {
 
     head = nullptr;
 }
+
+/* Given a reference to a node, delete the kth element from back */
+template <typename T>
+void pop_k_back(node_ptr<T>& head, const size_t index) {
+    if(!head)
+        return;
+
+    node_ptr<T> iterSlow, iterFast;
+    iterSlow = iterFast = head;
+
+    size_t counter = 0;
+    while(iterFast && counter != index + 1) {
+        iterFast = iterFast->next;
+        counter++;
+    }
+
+    if(!iterFast)
+        return;
+
+    while(iterFast) {
+        iterFast = iterFast->next;
+        iterSlow = iterSlow->next;
+    }
+
+    iterSlow->next = iterSlow->next->next;
+}
