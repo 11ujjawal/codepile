@@ -11,12 +11,19 @@
 #include <queue>
 #include <initializer_list>
 
+/* btNode - Binary Search Tree node declaration */
 template <typename T>
 struct btNode;
 
+/* Alias for a shared pointer to a BST node */
 template <typename T>
 using node_ptr = std::shared_ptr<btNode<T>>;
 
+/* Alias for a constant iterator to initializer_list */
+template <typename T>
+using iList = typename std::initializer_list<T>::const_iterator;
+
+/* BST node definition */
 template <typename T>
 struct btNode {
     T data;
@@ -28,43 +35,54 @@ struct btNode {
     {}
 };
 
+/* Function template for initiaizing a new node of btNode type */
 template <typename T>
 auto make_node(T const &value, node_ptr<T> lhs = nullptr, node_ptr<T> rhs = nullptr) {
     return std::make_shared<btNode<T>>(value, std::move(lhs), std::move(rhs));
 }
 
+/* Function template for creating a binary search tree
+ *
+ * The function takes in input in the form of initializer_list, ordered in
+ * ascending order. The middle element turns out to be the root element
+ * and then a recursive call to the left half for the left element of root and
+ * another recurvive call to the right half for the right element.
+ *
+ * Example -
+ *
+ * node_ptr<int> root = make_tree({1, 2, 3, 4, 5, 6, 7});
+ *
+ * The above statement will generate a tree of the form
+ *
+ *          4
+ *         / \
+ *        2   6
+ *      / \  / \
+ *     1  3 5  7
+ *
+ */
 template <typename T>
-auto make_tree(const std::initializer_list<T>& values) {
-    typename std::initializer_list<T>::const_iterator iter = values.begin();
-    node_ptr<T> root = make_node(*iter);
-    iter++;
+node_ptr<T> make_tree(const std::initializer_list<T>& values, iList<T> begin, iList<T> end) {
+    if(begin > end)
+        return nullptr;
 
-    std::queue<btNode<T>* > Q;
-    Q.push(root.get());
+    auto mid = begin;
+    std::advance(mid, std::distance(begin, end) / 2);
 
-    while(iter != values.end()) {
-        btNode<T> *node = Q.front();
-        Q.pop();
-
-        node->left = make_node(*iter);
-        Q.push(node->left.get());
-        iter++;
-
-        if(iter) {
-            node->right = make_node(*iter);
-            Q.push(node->right.get());
-            iter++;
-        }
-    }
+    node_ptr<T> root = make_node(*mid);
+    root->left = make(values, begin, std::prev(mid));
+    root->right = make(values, std::next(mid), end);
 
     return root;
 }
 
+/* Template function to make a bst */
 template <typename T>
 auto make_bst(const std::initializer_list<T>& values) {
-
+    return make_tree(values, values.begin(), std::prev(values.end()));
 }
 
+/* Level order tree traversal */
 template <typename T>
 void print(const node_ptr<T>& node) {
     if(!node)
