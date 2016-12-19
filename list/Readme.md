@@ -67,3 +67,55 @@ push_at(fetch(ilist, 3), key);
 auto sortedList = make_list({1, 3, 6, 8, 10});
 push_sorted(sortedList, 5);
 ```
+
+#### Deletion
+
+Items can be deleted from various positions in the list -
+- ```pop_front``` - Removes the element from the start of the list
+```
+/* List after deletion -
+ * HEAD -> 1 -> 7 -> 5 -> 6 -> 9 -> 4 -> 0 -> 5 -> nullptr
+ */
+pop_front(ilist);
+```
+- ```pop_back``` - Removes the element from the start of the list
+```
+/* List after deletion -
+ * HEAD -> 1 -> 7 -> 5 -> 6 -> 9 -> 4 -> 0 -> 5 -> nullptr
+ */
+pop_front(ilist);
+```
+- ```pop_at```
+- ```pop_all```
+- ```pop_k_back```
+
+```
+
+/* pop_back removes the element from the end of the list
+ *
+ * List after deletion -
+ * HEAD -> 1 -> 7 -> 5 -> 6 -> 9 -> 4 -> 0 -> nullptr
+ */
+pop_back(ilist);
+
+/* pop_at accepts a reference to a node and removes the next node
+ *
+ * List after deletion -
+ * HEAD -> 1 -> 7 -> 6 -> 9 -> 4 -> 0 -> nullptr
+ */
+pop_at(ilist);
+
+/* pop_k_back removes kth element from the end of the list
+ *
+ * List after deletion -
+ * HEAD -> 1 -> 7 -> 6 -> 4 -> 0 -> nullptr
+ */
+pop_k_back(ilist, 3);
+
+/* pop_all removes all the elements from the list
+ *
+ * List after deletion -
+ * HEAD -> nullptr
+ */
+pop_all(ilist);
+```
