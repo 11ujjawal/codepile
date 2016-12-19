@@ -41,6 +41,52 @@ auto make_node(T const &value, node_ptr<T> lhs = nullptr, node_ptr<T> rhs = null
     return std::make_shared<btNode<T>>(value, std::move(lhs), std::move(rhs));
 }
 
+/* Function template for creating a binary tree
+ *
+ * The function takes in input in the form of initializer_list. The list has
+ * values of tree nodes in level order. These values are then attached to build
+ * a tree, in level order form.
+ *
+ * Example -
+ *
+ * node_ptr<int> root = make_tree({1, 2, 3, 4, 5, 6, 7});
+ *
+ * The above statement will generate a tree of the form
+ *
+ *          1
+ *         / \
+ *        2   3
+ *      / \  / \
+ *     4  5 6  7
+ *
+ */
+template <typename T>
+auto make_btree(const std::initializer_list<T>& values) {
+    typename std::initializer_list<T>::const_iterator iter = values.begin();
+    node_ptr<T> root = make_node(*iter);
+    iter++;
+
+    std::queue<btNode<T>* > Q;
+    Q.push(root.get());
+
+    while(iter != values.end()) {
+        btNode<T> *node = Q.front();
+        Q.pop();
+
+        node->left = make_node(*iter);
+        Q.push(node->left.get());
+        iter++;
+
+        if(iter) {
+            node->right = make_node(*iter);
+            Q.push(node->right.get());
+            iter++;
+        }
+    }
+
+    return root;
+}
+
 /* Function template for creating a binary search tree
  *
  * The function takes in input in the form of initializer_list, ordered in
@@ -70,8 +116,8 @@ node_ptr<T> make_tree(const std::initializer_list<T>& values, iList<T> begin, iL
     std::advance(mid, std::distance(begin, end) / 2);
 
     node_ptr<T> root = make_node(*mid);
-    root->left = make(values, begin, std::prev(mid));
-    root->right = make(values, std::next(mid), end);
+    root->left = make_tree(values, begin, std::prev(mid));
+    root->right = make_tree(values, std::next(mid), end);
 
     return root;
 }
