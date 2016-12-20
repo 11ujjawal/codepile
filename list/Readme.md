@@ -91,7 +91,7 @@ pop_at(ilist);
  */
 pop_k_back(ilist, 3);
 ```
--```pop_all``` - Removes all the elements from the list
+- ```pop_all``` - Removes all the elements from the list
 ```
 /* List after deletion -
  * HEAD -> nullptr
