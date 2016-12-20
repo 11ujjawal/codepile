@@ -22,44 +22,35 @@ node_ptr<std::string> slist = make_list({std::string("John"), std::string("Taylo
 #### Insertion
 
 Items can be inserted at various position in the list. The methods are -
-- ```push_front```
-- ```push_back```
-- ```push_at```
-- ```push_sorted```
-
+- ```push_front``` - Inserts a node at the front of the list
 ```
-int key = 5;
-
-/* push_front inserts a node at the front of the list
- *
- * List after insertion -
+/* List after insertion -
  * HEAD -> 5 -> 1 -> 7 -> 6 -> 9 -> 4 -> 0 -> nullptr
  */
-push_back(ilist, key);
-
-/* push_back inserts a node at the end of the list
- *
- * List after insertion -
+push_back(ilist, 5);
+```
+- ```push_back``` - Inserts a node at the end of the list
+```
+/* List after insertion -
  * HEAD -> 5 -> 1 -> 7 -> 6 -> 9 -> 4 -> 0 -> 5 -> nullptr
  */
-push_back(ilist, key);
-
-
-/* push_at accepts a pointer to a node in the list and inserts the new node
- * after the given node.
- *
- * To insert a node after the third node, invoke the fetch method to
+push_back(ilist, 5);
+```
+- ```push_at``` - Accepts a pointer to a node in the list and inserts the new
+node after the given node.
+```
+/* To insert a node after the third node, invoke the fetch method to
  * retrieve the third node and pass the node to the push_at method
  * along with the key to be inserted
  *
  * List after insertion -
  * HEAD -> 5 -> 1 -> 7 -> 5 -> 6 -> 9 -> 4 -> 0 -> 5 -> nullptr
  */
-push_at(fetch(ilist, 3), key);
-
-/* push_sorted inserts a node in a sorted list.
- *
- * CAUTION - This method does node verify whether the list is sorted.
+push_at(fetch(ilist, 3), 5);
+```
+- ```push_sorted``` - Inserts a node in a sorted list.
+```
+/* CAUTION - This method does node verify whether the list is sorted.
  *
  * List after insertion -
  * HEAD -> 1 -> 3 -> 5 -> 6 -> 8 -> 10 -> nullptr
@@ -67,6 +58,7 @@ push_at(fetch(ilist, 3), key);
 auto sortedList = make_list({1, 3, 6, 8, 10});
 push_sorted(sortedList, 5);
 ```
+
 
 #### Deletion
 
@@ -78,43 +70,30 @@ Items can be deleted from various positions in the list -
  */
 pop_front(ilist);
 ```
-- ```pop_back``` - Removes the element from the start of the list
+- ```pop_back``` - Removes the element from the end of the list
 ```
 /* List after deletion -
- * HEAD -> 1 -> 7 -> 5 -> 6 -> 9 -> 4 -> 0 -> 5 -> nullptr
- */
-pop_front(ilist);
-```
-- ```pop_at```
-- ```pop_all```
-- ```pop_k_back```
-
-```
-
-/* pop_back removes the element from the end of the list
- *
- * List after deletion -
  * HEAD -> 1 -> 7 -> 5 -> 6 -> 9 -> 4 -> 0 -> nullptr
  */
 pop_back(ilist);
-
-/* pop_at accepts a reference to a node and removes the next node
- *
- * List after deletion -
+```
+- ```pop_at``` - Accepts a reference to a node and removes the next node
+```
+/* List after deletion -
  * HEAD -> 1 -> 7 -> 6 -> 9 -> 4 -> 0 -> nullptr
  */
 pop_at(ilist);
-
-/* pop_k_back removes kth element from the end of the list
- *
- * List after deletion -
+```
+- ```pop_k_back``` - Removes kth element from the end of the list
+```
+/* List after deletion -
  * HEAD -> 1 -> 7 -> 6 -> 4 -> 0 -> nullptr
  */
 pop_k_back(ilist, 3);
-
-/* pop_all removes all the elements from the list
- *
- * List after deletion -
+```
+-```pop_all``` - Removes all the elements from the list
+```
+/* List after deletion -
  * HEAD -> nullptr
  */
 pop_all(ilist);
