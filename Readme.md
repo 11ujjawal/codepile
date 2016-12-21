@@ -4,5 +4,5 @@ This project records my experimentation with various data structures and algorit
 
 The problems have been picked from [Elements of Programming Interview][1] and [GeeksForGeeks][2]. The implementation accounts for approaches and suggestions mentioned in the above references.
 
-[1]:(http://www.amazon.in/Elements-Programming-Interviews-Insiders-Guide/dp/1479274836)
-[2]:(http://www.geeksforgeeks.org/)
+[1]:http://www.amazon.in/Elements-Programming-Interviews-Insiders-Guide/dp/1479274836
+[2]:http://www.geeksforgeeks.org/
