@@ -1,7 +1,4 @@
-/* Disjoint Set Data Structure
- *
- * The below DS demonstrates fast UNION and moderate FIND
- */
+/* Disjoint Set Data Structure */
 
 #include <iostream>
 #include <vector>
@@ -48,10 +45,10 @@ public:
      * Space Complexity - O(1)
      */
     char Find(char item) {
-        if(data[item] == item)
-            return item;
-        else
-            Find(data[item]);
+        if(data[item] != item)
+            data[item] = Find(data[item]);
+
+        return data[item];
     }
 
     /* Union()
@@ -63,12 +60,12 @@ public:
      */
     void Union(char setOne, char setTwo) {
         if(rank[setOne] > rank[setTwo])
-            data[setOne] = setTwo;
-        else if(rank[setOne] < rank[setTwo])
             data[setTwo] = setOne;
+        else if(rank[setTwo] > rank[setOne])
+            data[setOne] = setTwo;
         else {
             data[setOne] = setTwo;
-            rank[setOne]++;
+            rank[setTwo]++;
         }
     }
 };

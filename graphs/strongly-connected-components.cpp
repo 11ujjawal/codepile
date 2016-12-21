@@ -9,9 +9,11 @@ using namespace std;
 
 class Graph {
     vector<list<int> > edges;
+
     Graph getTranspose();
     void dfs(int startVertex, vector<bool>& visited);
     void dfsOrder(int startVertex, vector<bool>& visited, stack<int>& Stack);
+
 public:
     Graph(size_t vertices) : edges(vertices) {}
     inline void addEdge(int startVertex, int endVertex);
@@ -77,7 +79,7 @@ Graph Graph::getTranspose() {
     Graph gTrans(edges.size());
 
     for(vector<list<int> >::size_type startVertex = 0; startVertex != edges.size(); ++startVertex)
-        for(list<int>::const_iterator endVertex = edges[startVertex].begin(); endVertex != edges[startVertex].end(); ++endVertex)
+        for(list<int>::const_iterator endVertex = edges[startVertex].cbegin(); endVertex != edges[startVertex].cend(); ++endVertex)
             gTrans.edges[*endVertex].push_back(startVertex);
 
     return gTrans;
