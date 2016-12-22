@@ -10,7 +10,8 @@ using namespace std;
 
 /* DisjointSet DS - required for Kruskal Algorithm */
 class DisjointSet {
-    unordered_map<char, int> data, rank;
+    unordered_map<char, char> data;
+    unordered_map<char, int> rank;
 
 public:
     void MakeSet(const char elem) {
@@ -54,7 +55,6 @@ class Graph {
     vector<gEdge> edges;
 
 public:
-    Graph() {}
     inline void addEdge(char startVertex, char endVertex, int weight);
     void kruskal();
 };
