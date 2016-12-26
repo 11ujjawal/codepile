@@ -1,7 +1,6 @@
 /* Tree traversal in binary tree */
 
 #include <iostream>
-#include <queue>
 #include <string>
 #include "tree.hpp"
 
@@ -19,10 +18,15 @@ void printPreOrder(const node_ptr<T>& node);
 template <typename T>
 void printPostOrder(const node_ptr<T>& node);
 
-/* Tempplate declaration for levelOrder traversal */
+/* Template declaration for levelOrder tree traversal */
 template <typename T>
 void printLevelOrder(const node_ptr<T>& node);
 
+template <typename T>
+void printLevelOrderUtil(const node_ptr<T>& node, size_t level);
+
+template <typename T>
+size_t getHeight(const node_ptr<T>& node);
 
 int main(void) {
     auto const root = make_node<int>(1);
@@ -78,27 +82,45 @@ void printPostOrder(const node_ptr<T>& node) {
     cout << node->data << ' ';
 }
 
-/* Tempplate definition for levelOrder traversal */
+/* Template definition for levelOrder tree traversal */
 template <typename T>
 void printLevelOrder(const node_ptr<T>& node) {
     if(!node)
         return;
 
-    queue<btNode<T>* > Q;
-    Q.push(node.get());
+    for(size_t index = 1; index <= getHeight(node); ++index)
+        printLevelOrderUtil(node, index);
+}
 
-    while(!Q.empty()) {
-        btNode<T> *temp = Q.front();
-        Q.pop();
+/* Level Order Traversal utilty function */
+template <typename T>
+void printLevelOrderUtil(const node_ptr<T>& node, size_t level) {
+    if(!node)
+        return;
 
-        cout << temp->data << ' ';
+    if(level == 1)
+        cout << (node->data) << ' ';
 
-        if(temp->left != nullptr)
-            Q.push((temp->left).get());
+    printLevelOrderUtil(node->left, level - 1);
+    printLevelOrderUtil(node->right, level - 1);
+}
 
-        if(temp->right != nullptr)
-            Q.push((temp->right).get());
-    }
+/* Height of the tree - required by level order treversal */
+template <typename T>
+size_t getHeight(const node_ptr<T>& node) {
+    if(!node)
+        return 0;
 
-    cout << endl;
+    size_t ltreeHeight = 0, rtreeHeight = 0;
+
+    if(node->left)
+        ltreeHeight = getHeight(node->left);
+
+    if(node->right)
+        rtreeHeight = getHeight(node->right);
+
+    if(ltreeHeight > rtreeHeight)
+        return ltreeHeight + 1;
+    else
+        return rtreeHeight + 1;
 }

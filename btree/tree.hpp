@@ -8,6 +8,7 @@
 
 #include <memory>
 #include <utility>
+#include <queue>
 #include <initializer_list>
 
 /* btNode - Binary Search Tree node declaration */
