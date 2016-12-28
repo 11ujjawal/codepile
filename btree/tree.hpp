@@ -73,7 +73,7 @@ auto make_tree(const std::initializer_list<T>& values) {
         Q.push(node->left.get());
         iter++;
 
-        if(iter) {
+        if(iter != values.end()) {
             node->right = make_node(*iter);
             Q.push(node->right.get());
             iter++;
