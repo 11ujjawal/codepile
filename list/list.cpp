@@ -113,14 +113,33 @@ void checkUtility() {
     auto iNode = intersection(iHead, head);
     cout << "Data at the intersection node: " << iNode->data << endl;
 
+    swap(head, head, fetch(head, 5));
+    print(head);
 }
 
+void checkIntOps() {
+    cout << "\nChecking Integer Specific Operations" << endl;
+    node_ptr<int> numOne = make_list({2, 4, 6, 8});
+    node_ptr<int> numTwo = make_list({1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1});
+    node_ptr<int> numThree = make_list({2, 3, 4, 1, 6, 5, 9, 8});
+
+    /* Check whether the given lists are pallindrome or not */
+    print(numOne);
+    cout << "Is list pallindrome? " << pallindrome(numOne) << endl;
+    print(numTwo);
+    cout << "Is list pallindrome? " << pallindrome(numTwo) << endl;
+
+    cout << "Sort given list in even odd" << endl;
+    sortEvenOdd(numThree);
+    print(numThree);
+}
 
 int main(void) {
     checkPush();
     checkPop();
     checkFind();
     checkUtility();
+    checkIntOps();
 
     return 0;
 }

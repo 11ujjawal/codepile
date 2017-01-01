@@ -174,6 +174,12 @@ void reverse(node_ptr<T>& head);
 template <typename T>
 node_ptr<T> intersection(const node_ptr<T>& headOne, const node_ptr<T>& headTwo);
 
+/* Given a reference to list and references to two elements in the same list,
+ * swap the elements
+ */
+template <typename T>
+void swap(node_ptr<T>& head, const node_ptr<T>& nodeOne, const node_ptr<T>& nodeTwo);
+
 /* Template implementation */
 #include "utility.tpp"
 
@@ -192,5 +198,23 @@ void printReverse(const node_ptr<T>& head);
 
 /* Template implementation */
 #include "io.tpp"
+
+/* ---------------------------------------------------------------------------
+ * Type Specific operations
+ * add()
+ */
+
+/* Given reference to two intgers stored as list, add them */
+template <typename T>
+node_ptr<T> add(node_ptr<T> numOne, node_ptr<T> numTwo);
+
+/* Check for pallindrome */
+template <typename T>
+bool pallindrome(const node_ptr<T>& head);
+
+template <typename T>
+void sortEvenOdd(node_ptr<T>& head);
+
+#include "integer.tpp"
 
 #endif

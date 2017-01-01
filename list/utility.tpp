@@ -95,3 +95,25 @@ node_ptr<T> intersection(const node_ptr<T>& headOne, const node_ptr<T>& headTwo)
         secHead = secHead->next;
     }
 }
+
+/* Given a reference to list and references to two elements in the same list,
+ * swap the elements
+ */
+template <typename T>
+void swap(node_ptr<T>& head, const node_ptr<T>& nodeOne, const node_ptr<T>& nodeTwo) {
+    if(!(head && nodeOne && nodeTwo))
+        return;
+
+    node_ptr<T> tempOne = head, tempTwo = head;
+
+    if(nodeOne == head) {
+        while(tempTwo->next != nodeTwo)
+            tempTwo = tempTwo->next;
+
+        tempOne = nodeOne->next;
+        nodeOne->next = nodeTwo->next;
+        nodeTwo->next = tempOne;
+        tempTwo->next = nodeOne;
+        head = nodeTwo;
+    } 
+}
